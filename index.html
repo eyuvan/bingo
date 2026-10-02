@@ -1,11 +1,9 @@
-<!DOCTYPE html>
+[10/2/2026 12:20 AM] €¥uvan_unique _boyz1: <!DOCTYPE html>
 <html lang="am">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Edil Bingo</title>
-    <!-- የቴሌግራም ስክሪፕት በደህንነት እንዲነበብ -->
-    <script src="https://telegram.org"></script>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -135,8 +133,9 @@
         .num-list span.called-active {
             background-color: #e67e22 !important;
             color: white !important;
+            border-color: #d35400;
         }
-		.bingo-matrix {
+[10/2/2026 12:20 AM] €¥uvan_unique _boyz1: .bingo-matrix {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 5px;
@@ -238,7 +237,7 @@
             <p><b>Play Wallet:</b> 10 ETB</p>
         </div>
     </main>
-	<!-- Bottom Navigation Bar -->
+[10/2/2026 12:20 AM] €¥uvan_unique _boyz1: <!-- Bottom Navigation Bar -->
     <nav class="nav-bar">
         <button id="btn-game" class="active-tab" onclick="switchTab('game')">🎮 Game</button>
         <button id="btn-wallet" onclick="switchTab('wallet')">💰 Wallet</button>
@@ -246,11 +245,54 @@
         <button id="btn-profile" onclick="switchTab('profile')">👤 Profile</button>
     </nav>
 
-    <!-- የጃቫስክሪፕት ሎጂክ ፋይል ግንኙነት (በሰዓት ማህተም ሁልጊዜ አዲስ ሆኖ እንዲከፈት ተደርጓል) -->
+    <!-- ሎጂክ ሙሉ በሙሉ እዚህ ውስጥ ስለቀለጠ CORS Block አይከተልም -->
     <script>
-        var script = document.createElement('script');
-        script.src = 'app.js?v=' + new Date().getTime();
-        document.head.appendChild(script);
-    </script>
-</body>
-</html>
+        let selectedCards = [];
+        let countdownValue = 49;
+        let gameIdCounter = 1;
+        let timerInterval;
+
+        function startAppInit() {
+            const container = document.getElementById('cards-container');
+            if (container) {
+                container.innerHTML = '';
+                for (let i = 1; i <= 600; i++) {
+                    let card = document.createElement('div');
+                    card.classList.add('card-box');
+                    card.innerText = i;
+                    card.onclick = function() { selectCard(card, i); };
+                    container.appendChild(card);
+                }
+            }
+            setupBingoBoard();
+            startCountdown();
+        }
+
+        // ገጹ እንደተከፈተ ወዲያውኑ ሎጂኩን ማስነሻ
+        window.onload = startAppInit;
+
+        function selectCard(element, num) {
+            if (selectedCards.includes(num)) {
+                selectedCards = selectedCards.filter(id => id !== num);
+                element.classList.remove('selected');
+            } else {
+                if (selectedCards.length < 3) {
+                    selectedCards.push(num);
+                    element.classList.add('selected');
+                } else {
+                    alert("ቢበዛ መምረጥ የሚችሉት 3 ካርቴላ ብቻ ነው!");
+                }
+            }
+        }
+
+        function startCountdown() {
+            const timerElement = document.getElementById('timer');
+            if(!timerElement) return;
+            
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                countdownValue--;
+                timerElement.innerText = countdownValue;
+                
+                if (countdownValue <= 0) {
+                    clearInterval(timerInterval);
