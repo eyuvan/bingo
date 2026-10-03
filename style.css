@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    margin: 0;
+    padding-bottom: 70px;
+    text-align: center;
+}
+.hidden { display: none !important; }
+
+/* Dashboard */
+#top-dashboard {
+    display: flex;
+    justify-content: space-around;
+    background: #2d2d2d;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 3px solid #ffcc00;
+}
+#timer-box { color: #ff3333; font-size: 16px; }
+
+/* Grids */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+    background: #222;
+    border-radius: 8px;
+    margin: 10px;
+}
+.card-item {
+    background: #333;
+    padding: 15px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.card-item.selected { background: #ffcc00; color: #000; }
+
+/* 5x5 Bingo Grid */
+.bingo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    background: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 15px auto;
+    max-width: 280px;
+}
+.bingo-cell {
+    background: #222;
+    color: #fff;
+    padding: 12px 0;
+    font-weight: bold;
+    font-size: 14px;
+}
+.bingo-cell.called { background: #00cc66; }
+
+/* Live Bingo Screen */
+#caller-screen {
+    background: #000;
+    color: #ffcc00;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 20px;
+    margin: 15px;
+    border: 3px dashed #ffcc00;
+    border-radius: 10px;
+}
+.bingo-board {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+.bingo-col {
+    background: #2b2b2b;
+    width: 18%;
+    border-radius: 5px;
+}
+.col-letter { background: #ffcc00; color: #000; font-weight: bold; padding: 5px 0; }
+.num-list { padding: 5px; font-size: 12px; display: flex; flex-direction: column; gap: 2px;}
+.num-list span { background: #444; margin: 2px 0; border-radius: 3px; }
+.num-list span.hit { background: #00cc66; color: white; }
+
+#bingo-btn {
+    background: #ff3333; color: white; border: none; padding: 15px 40px;
+    font-size: 20px; font-weight: bold; border-radius: 30px; margin-top: 20px; cursor: pointer;
+}
+
+/* Nav Bar */
+#nav-bar {
+    position: fixed;
+    bottom: 0; width: 100%;
+    display: flex; background: #2d2d2d;
+    border-top: 2px solid #333;
+}
+#nav-bar button {
+    flex: 1; background: none; border: none; color: white;
+    padding: 15px 0; font-size: 14px; cursor: pointer;
+}
+#nav-bar button:hover { background: #444; }
+
+/* Pages styling */
+.page { padding: 20px; }
+.wallet-card, .profile-card { background: #2d2d2d; padding: 20px; border-radius: 10px; text-align: left;}
+.btn { background: #ffcc00; color: #000; border: none; padding: 10px 20px; font-weight: bold; border-radius: 5px; margin-right: 10px; cursor: pointer;}
+.btn.secondary { background: #555; color: white; }
